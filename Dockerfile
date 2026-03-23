@@ -1,4 +1,4 @@
-FROM python:3.10-slim AS builder
+FROM python:3.14-slim AS builder
 
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
@@ -10,7 +10,7 @@ COPY pyproject.toml ./
 RUN uv sync --no-dev --no-install-project
 
 # --- runtime stage ---
-FROM python:3.10-slim
+FROM python:3.14-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
